@@ -2,16 +2,13 @@ import express from 'express'
 import { PrismaClient } from "@prisma/client"
 import cors from 'cors'
 
-
 const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
-
 const port = 3000
-
 
 // borges
 // yBgacQbNPjkzD1xt 
@@ -34,7 +31,7 @@ app.post('/usuarios', async (req, res) => {
 app.get('/usuarios', async (req, res) => {
     let users = []
 
-    // filtro só pelo nome 
+    // filtro pelo nome, email ou age
     if (req.query) {
         users = await prisma.user.findMany({
             where: {
